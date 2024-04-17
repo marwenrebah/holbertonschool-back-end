@@ -1,8 +1,3 @@
-#!/usr/bin/python3
-"""
-Python script that, using this REST API, for a given employee ID,
-returns information about his/her TODO list progress.
-"""
 import requests
 import sys
 
@@ -12,18 +7,17 @@ def TODO_PROGRESS():
     Retrieves To Do list progress for a given employee.
     """
     user_id = sys.argv[1]
-    todo = requests.get(
-        'https://jsonplaceholder.typicode.com/todos/?userId={}'.format(
-            user_id))
-    user_info = requests.get(
-        'https://jsonplaceholder.typicode.com/users/{}'.format(user_id))
-    completed_tasks = [task["title"]
-                       for task in todo.json() if task["completed"]]
-    print('Employee {} is done with tasks ({}/{}):'.format(
-        user_info.json()['name'], len(completed_tasks), len(todo.json())))
-    print('\n'.join('\t {}'.format(task) for task in completed_tasks))
+    user_url = f'https://jsonplaceholder.typicode.com/users/{user_id}'
+    todos_url = f'https://jsonplaceholder.typicode.com/todos/?userId={user_id}'
+    user_response = requests.get(user_url).json()
+    name = user_response.get('name')
+    todos_response = requests.get(todos_url).json()
+    tasks = [task.get('title')
+             for task in todos_response if task.get('completed') is True]
+    print('Employee {} is done with tasks ({}/{}):'.format(name,
+          len(tasks), len(todos_response)))
+    print('\n'.join('\t {}'.format(task) for task in tasks))
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        TODO_PROGRESS()
+    TODO_PROGRESS()
