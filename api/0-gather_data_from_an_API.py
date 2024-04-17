@@ -3,7 +3,10 @@ import requests
 import sys
 
 
-def TODO_PROGRESS(ID):
+def TODO_PROGRESS():
+    """
+    Extracting the user ID from the command-line argument
+    """
     user_id = sys.argv[1]
     todo = requests.get(
         'https://jsonplaceholder.typicode.com/todos/?userId{}'.format(user_id))
