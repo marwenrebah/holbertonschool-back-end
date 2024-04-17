@@ -3,9 +3,9 @@
 Python script that, using this REST API, for a given employee ID,
 returns information about his/her To Do list progress.
 """
+import json
 import requests
 import sys
-import json
 
 
 def TODO_PROGRESS():
