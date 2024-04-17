@@ -5,17 +5,19 @@ import sys
 
 def TODO_PROGRESS():
     """
-    Extracting the user ID from the command-line argument
+    Retrieves TODO list progress for a given employee.
     """
     user_id = sys.argv[1]
     todo = requests.get(
-        'https://jsonplaceholder.typicode.com/todos/?userId{}'.format(user_id))
+        'https://jsonplaceholder.typicode.com/todos/?userId={}'.format(
+            user_id))
     user_info = requests.get(
         'https://jsonplaceholder.typicode.com/users/{}'.format(user_id))
-    completed_tasks = [task["title"] for task in todo if task["completed"]]
-    print('Employee {} is done with tass({}/{}):'.format(
-        user_info, len(completed_tasks), len(todo)))
-    print('\n'.join('\t {}'.format(task) for task in tasks))
+    completed_tasks = [task["title"]
+                       for task in todo.json() if task["completed"]]
+    print('Employee {} is done with tasks ({}/{}):'.format(
+        user_info.json()['name'], len(completed_tasks), len(todo.json())))
+    print('\n'.join('\t {}'.format(task) for task in completed_tasks))
 
 
 if __name__ == "__main__":
