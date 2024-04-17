@@ -9,7 +9,8 @@ import sys
 
 def TODO_PROGRESS(ID):
     """
-    This function retrieves TODO list progress for a given employee using requests.
+    This function retrieves TODO list progress for a
+    given employee using requests.
     """
     todos = requests.get(
         f"https://jsonplaceholder.typicode.com/todos?userId={ID}"
@@ -19,7 +20,8 @@ def TODO_PROGRESS(ID):
     ).json()
     completed_tasks = [task["title"] for task in todos if task["completed"]]
     print(
-        f"Employee {user_info['name']} has completed tasks ({len(completed_tasks)}/{len(todos)}):"
+        f"Employee {user_info['name']} has completed tasks\
+              ({len(completed_tasks)}/{len(todos)}):"
     )
     for task in completed_tasks:
         print("\t {}".format(task))
