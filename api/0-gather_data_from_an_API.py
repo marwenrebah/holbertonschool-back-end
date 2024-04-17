@@ -5,7 +5,7 @@ import sys
 
 def TODO_PROGRESS():
     """
-    Retrieves TODO list progress for a given employee.
+    Retrieves To Do list progress for a given employee.
     """
     user_id = sys.argv[1]
     todo = requests.get(
