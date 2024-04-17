@@ -20,7 +20,7 @@ def TODO_PROGRESS(ID):
     ).json()
     completed_tasks = [task["title"] for task in todos if task["completed"]]
     print(
-        f"Employee {user_info['name']} has completed tasks\
+        f"Employee {user_info['name']} is done with tasks\
               ({len(completed_tasks)}/{len(todos)}):"
     )
     for task in completed_tasks:
