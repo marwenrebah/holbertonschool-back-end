@@ -20,8 +20,7 @@ def TODO_PROGRESS():
     with open('{}.json'.format(user_id), 'w+') as file:
         for todo in todo_response:
             task = {"task": todo.get("title"),
-                    "completed": todo.get("completed"),
-                    "username": name}
+                    "completed": todo.get("completed"), "username": name}
             tasks.append(task)
         information = {user_id: tasks}
         file.write(json.dumps(information))
