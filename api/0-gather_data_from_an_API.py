@@ -17,7 +17,7 @@ def TODO_PROGRESS():
     tasks = [task.get('title')
              for task in todo_response if task.get('completed')]
 
-    print('Employee {} is done with tasks ({}/{}):'.format(name,
+    print('Employee {} is done with tasks({}/{}):'.format(name,
           len(tasks), len(todo_response)))
     print('\n'.join('\t {}'.format(task) for task in tasks))
 
